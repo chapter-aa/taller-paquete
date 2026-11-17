@@ -29,6 +29,10 @@ version = { file = "version.txt" }
 
 [tool.ruff]
 line-length = 90
+# El guardia cuida el paquete y sus pruebas, no los notebooks: Databricks guarda los
+# notebooks a su manera, y si ruff los reescribe, el notebook abierto se recarga.
+extend-exclude = ["notebooks"]
+force-exclude = true
 
 [tool.ruff.lint]
 select = [

@@ -56,6 +56,7 @@ assert codigo == 0, "Alguna prueba falló: lee el mensaje de arriba."
 # MAGIC
 # MAGIC `ruff check` revisa las reglas y arregla lo que puede; lo que no, te lo dice con
 # MAGIC su código (por ejemplo, `ANN001`). `ruff format` acomoda el estilo por ti.
+# MAGIC Revisa el paquete y las pruebas; los notebooks quedan fuera (ver `pyproject.toml`).
 
 # COMMAND ----------
 
