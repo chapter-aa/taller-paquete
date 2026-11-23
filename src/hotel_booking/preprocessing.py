@@ -9,6 +9,7 @@ def clean_column_names(df: pd.DataFrame) -> pd.DataFrame:
     df.columns = df.columns.str.replace(r"[ -]", "_", regex=True)
     return df
 
+
 def add_arrival_month(df: pd.DataFrame) -> pd.DataFrame:
     """Corrige la fecha imposible 2018-2-29 (2018 no fue bisiesto), calcula la
     fecha de llegada sumando los días de anticipación y agrega el mes de arribo."""
@@ -22,6 +23,3 @@ def add_arrival_month(df: pd.DataFrame) -> pd.DataFrame:
     df["date_of_arrival"] = llegadas
     df["arrival_month"] = llegadas.dt.month
     return df
-    
-
-
