@@ -19,7 +19,3 @@ def test_add_arrival_month() -> None:
     result = add_arrival_month(df)
 
     assert list(result["arrival_month"]) == [2, 3]
-    
-
-
-
