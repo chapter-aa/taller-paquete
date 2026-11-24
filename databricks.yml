@@ -1,0 +1,26 @@
+# El bundle del proyecto: qué se despliega en Databricks y cómo.
+# Se usa desde la terminal, en esta carpeta:
+#     databricks bundle validate     revisa que este archivo esté bien escrito
+#     databricks bundle deploy       construye el paquete y lo sube con el job
+#     databricks bundle run preprocesamiento
+#     databricks bundle destroy      borra lo que se desplegó
+bundle:
+  name: taller-paquete
+
+# El paquete se construye con uv y se sube como rueda (.whl).
+artifacts:
+  paquete:
+    type: whl
+    build: uv build --wheel
+    path: .
+
+# Los jobs van en su propia carpeta, uno por archivo.
+include:
+  - resources/*.yml
+
+targets:
+  # En modo desarrollo, cada persona despliega su propia copia: los nombres llevan
+  # el prefijo [dev usuario] y todo queda en su carpeta de usuario.
+  dev:
+    default: true
+    mode: development

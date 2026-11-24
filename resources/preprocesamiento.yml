@@ -1,0 +1,25 @@
+# El job que preprocesa las reservas con el paquete hotel_booking.
+resources:
+  jobs:
+    preprocesamiento:
+      name: hotel-booking-preprocesamiento
+
+      # El entorno serverless del job: la misma versión que usan los notebooks,
+      # más nuestro paquete, que el bundle construye en dist/.
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "6"
+            dependencies:
+              - ../dist/*.whl
+
+      tasks:
+        - task_key: preprocesar
+          environment_key: default
+          spark_python_task:
+            python_file: ../scripts/preprocesar.py
+            parameters:
+              - "--config_path"
+              - "${workspace.file_path}/project_config.yml"
+              - "--env"
+              - "${bundle.target}"
